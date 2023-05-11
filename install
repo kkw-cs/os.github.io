@@ -1,0 +1,31 @@
+Installation 
+
+lab2pc5@lab2pc5:~$ sudo apt install *mpich
+[sudo] password for lab2pc5: 
+
+
+
+
+
+
+
+lab2pc5@lab2pc5:~$ mpicc m2.c
+lab2pc5@lab2pc5:~$ mpirun -np 1 ./a.out 5
+
+ Rank=0 n=5
+	36
+	27
+	15
+	43
+	35
+
+max=43	 min=15lab2mpicc m3.c
+lab2pc5@lab2pc5:~$ mpirun -np 1 ./a.out 5
+
+ size= 1,Rank=0 n=5
+	36	27	15	43	35
+sum=156lab2pc5@lab2pc5:~$ 
+
+
+
+
