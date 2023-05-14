@@ -1,0 +1,38 @@
+<?php
+session_start();
+if(isset($_SESSION['cnt'])){
+$_SESSION['cnt']+=1;
+}
+else{
+$_SESSION['cnt']=1;
+}
+echo "You have visited this page ".$_SESSION['cnt']." Time(s).";
+?>
+
+
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+#CreatethePosition_Salariesdataset
+Data={'Position':['CEO','charman','director','SeniorManager','JuniorManager','Intern'],
+'Level':[1,2,3,4,5,6],
+'Salary':[50000,80000,110000,150000,200000,250000]}
+df=pd.DataFrame(Data)
+#Identifytheindependentandtargetvariables
+X=df.iloc[:,1:2].values
+Y=df.iloc[:,2].values
+#Splitthevariablesintotrainingandtestingsetswitha7:3ratio
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.3,random_state=0)
+#Printthetrainingandtestingsets
+print("X_train:\n",X_train)
+print("y_train:\n",Y_train)
+print("X_test:\n",X_test)
+print("y_test:\n",Y_test)
+#Build a simple linear regression model
+regressor=LinearRegression()
+regressor.fit(X_train,Y_train)
+#Print the coefficients and intercept
+print("Coefficients:",regressor.coef_)
+print("Intercept:",regressor.intercept_)
