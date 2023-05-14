@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<BookInfo>
+<Book id="01">
+<BookName>Java</BookName>
+<BookAuthor>Kunde Mam</BookAuthor>
+<BookPublication>KKw Publication</BookPublication>
+<BookPrice>200</BookPrice>
+</Book>
+<Book id="02">
+<BookName>PHP</BookName>
+<BookAuthor>Malani Sir</BookAuthor>
+<BookPublication>K2 Publication</BookPublication>
+<BookPrice>250</BookPrice>
+</Book>
+<Book id="03">
+<BookName>OS</BookName>
+<BookAuthor>Purkar Mam</BookAuthor>
+<BookPublication>KKw Publication</BookPublication>
+<BookPrice>150</BookPrice>
+</Book>
+<Book id="04">
+<BookName>DA</BookName>
+<BookAuthor>Renuka Mam</BookAuthor>
+<BookPublication>Kokate Publication</BookPublication>
+<BookPrice>500</BookPrice>
+</Book>
+</BookInfo>
+
+
+<?php
+$xml=simplexml_load_file("Slip6.xml")or die("Cannot find");
+echo "Book Details<br>";
+echo "<table border='2'>";
+echo "<tr><th>id</th><th>BookName</th><th>BookAuthor</th><th>BookPublication</th><th>BookPrice</th></tr>";
+foreach($xml->Book as $Book){
+    echo "<tr>";
+    echo "<td>".$Book['id']."</td>";
+    echo "<td>".$Book->BookName."</td>";
+    echo "<td>".$Book->BookAuthor."</td>";
+    echo "<td>".$Book->BookPublication."</td>";
+    echo "<td>".$Book->BookPrice."</td></tr>";
+}
+echo "</table>";
+?>
+
+
+
+import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+transactions = [['Bread','Milk'],
+['Bread','Diaper','Beer','Eggs'],
+['milk', 'Diaper','Beer','Coke'],
+['Bread', 'Milk','Diaper','Beer'],
+['Bread', 'Milk', 'Diaper','Coke']]
+print(transactions)
+from mlxtend.preprocessing import TransactionEncoder
+te=TransactionEncoder()
+te_array=te.fit(transactions).transform(transactions)
+df=pd.DataFrame(te_array, columns=te.columns_)
+print(df)
+freq_items = apriori(df, min_support = 0.5, use_colnames = True)
+print(freq_items)
+rules = association_rules(freq_items, metric ='support', min_threshold=0.05)
+rules = rules.sort_values(['support', 'confidence'], ascending =[False,False])
+print(rules)
