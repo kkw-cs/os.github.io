@@ -1,159 +1,78 @@
-//Q1
-#include<stdio.h>
- main()
- {
-   int i,j,p,r,alloc[10][10],need[10][10],max[10][10],available[10];
-   printf("\n Enter the how many process you want:");
-   scanf("%d",&p);
-   printf(" Enter the how many resources you want:");
-   scanf("%d",&r);
-   printf("\n Enter the allocation matrix:\n");
-   for(i=0;i<p;i++)
-    {
+<?xml version="1.0"?>
+<MovieInfo>
+<Movie id="01">
+<MovieTitle>Lucky the Racer</MovieTitle>
+<ActorName>Allu Arjun</ActorName>
+<ReleaseYear>2014</ReleaseYear>
+</Movie>
+<Movie id="02">
+<MovieTitle>Sita Ramam</MovieTitle>
+<ActorName>Dulquer Salmaan</ActorName>
+<ReleaseYear>2022</ReleaseYear>
+</Movie>
+<Movie id="03">
+<MovieTitle>AAa</MovieTitle>
+<ActorName>Nithiin</ActorName>
+<ReleaseYear>2016</ReleaseYear>
+</Movie>
+<Movie id="04">
+<MovieTitle>Theri</MovieTitle>
+<ActorName>Vijay Kumar</ActorName>
+<ReleaseYear>2016</ReleaseYear>
+</Movie>
+<Movie id="05">
+<MovieTitle>Yevadu</MovieTitle>
+<ActorName>Ram charan</ActorName>
+<ReleaseYear>2014</ReleaseYear>
+</Movie>
+</MovieInfo>
 
-     printf(" P%d\t",i);
-      for(j=0;j<r;j++)
-       scanf("%d",&alloc[i][j]);
-    }
-   printf("\n Enter the maximum demand of matrix:\n");
-   for(i=0;i<p;i++)
-    {
-     printf(" P%d\t",i);
-      for(j=0;j<r;j++)
-       scanf("%d",&max[i][j]);
-    }
-   printf("\n Enter the available resource matrix: ");
-   for(i=0;i<r;i++)
-     {
-       scanf("%d",&available[i]);
-       
-     }
-   printf("\n The contents of need array is:");
-   for(i=0;i<p;i++)
-    {
-     printf("\n P%d",i);
-      for(j=0;j<r;j++)
-       {
-	 need[i][j]=max[i][j]-alloc[i][j];
-	 printf("\t%d",need[i][j]);
-       }
-    }
-printf("\n The contents Allocation Matrix:");
-   for(i=0;i<p;i++)
-    {
-     printf("\n P%d",i);
-      for(j=0;j<r;j++)
-       {
-	 printf("\t%d",alloc[i][j]);
-       }
-    }
-printf("\n The contents Max Matrix is:");
-   for(i=0;i<p;i++)
-    {
-     printf("\n P%d",i);
-      for(j=0;j<r;j++)
-       {
-	 printf("\t%d",max[i][j]);
-       }
-    }
-printf("\n The contents Available Matrix is:");
-   for(i=0;i<r;i++)
-     {
-             
-	 printf("\t%d",available[i]);
-       }
-    
+
+<?php
+$dom=new DOMDocument();
+$dom->load('Slip7.xml');
+echo "<b>Movie Title</b><br>";
+$t=$dom->getElementsByTagName("MovieTitle");
+foreach($t as $node){
+    print $node->textContent;
+    echo "<br>";
 }
-//Q2
-// Scan disk scheduling
-
-#include<stdio.h>
-
-int main()
-{
-    int RQ[100],i,j,n,TotalHeadMoment=0,initial,size,move,temp;
-
-    printf("\n Enter the number of Requests : ");
-    scanf("%d",&n);
-
-    printf("\n Enter the Requests sequence : ");
-    for(i=0;i<n;i++)
-	{
-	    scanf("%d",&RQ[i]);
-	}
-	
-	printf("\n Enter initial head position : ");
-    scanf("%d",&initial);
-    
-	printf("\n Enter total disk size : ");
-    scanf("%d",&size);
-    
-	printf("\n Enter the head movement direction for high 1 and for low 0 : ");
-    scanf("%d",&move); 
-    
-    for(i=1;i<n;i++)
-    {
-        for(j=0;j<n-i;j++)
-        {
-            if(RQ[j]>RQ[j+1])
-            {
-                temp=RQ[j];
-                RQ[j]=RQ[j+1];
-                RQ[j+1]=temp;
-            }
-        }
-    }
-
-    int index;
-    for(i=0;i<n;i++)
-    {
-        if(initial<RQ[i])
-        {
-            index=i;
-            break;
-        }
-    }
-
-    if(move==1)
-    {
-        for(i=index;i<n;i++)
-        {
-            TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
-            initial=RQ[i];
-        }
-
-        TotalHeadMoment=TotalHeadMoment+abs(size-RQ[i-1]-1);
-        initial = size-1;
-        
-        for(i=index-1;i>=0;i--)
-        {
-             TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
-             initial=RQ[i];
-            
-        }
-    }
-    else
-    {
-        for(i=index-1;i>=0;i--)
-        {
-            TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
-            initial=RQ[i];
-        }
-
-        TotalHeadMoment=TotalHeadMoment+abs(RQ[i+1]-0);
-        initial =0;
-        
-        for(i=index;i<n;i++)
-        {
-             TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
-             initial=RQ[i];
-            
-        }
-    }
-    
-    printf("\n Total head movement is : %d",TotalHeadMoment);
-    
-	return 0;
+echo "<b>Actor Name</b><br>";
+$t1=$dom->getElementsByTagName("ActorName");
+foreach($t1 as $node){
+    print $node->textContent;
+    echo "<br>";
 }
-
-
+echo "<b>Release Date</b><br>";
+$t2=$dom->getElementsByTagName("ReleaseDate");
+foreach($t2 as $node){
+    print $node->textContent;
+    echo "<br>";
+}
+?>
+// $movies=$dom->getElementsByTagName("MovieInfo");
+// foreach($movies as $movie){
+//     echo "MovieTitle:".$movie->getElementsByTagName('MovieTitle')[0]->textContent.",";
+//     echo "ActorName:".$movie->getElementsByTagName('ActorName')[0]->textContent."<br>";
+    // }
+    
+    
+import io
+import pandas as pd
+df = pd.read_csv('D:/Clg/TYBCS Sem 6/DA/Market_Basket.csv')
+print(df.head(10))
+transactions = []
+transactions = []
+for i in range(0, len(df)):
+#for i in range(0, 7501):
+        transactions.append([str(df.values[i,j]) for j in range(0, 20)])
+from apyori import apriori
+rules = apriori(transactions, min_support = 0.003, min_confidence = 0.2, min_lift = 3, min_length = 2)
+# Visualising the results
+results = list(rules)
+association_rules(frequent_items, metric="confidence", min_threshold=0.5,support_only=False)
+plt.scatter(rules['support'], rules['confidence'], alpha=0.5)
+plt.xlabel('support')
+plt.ylabel('confidence')
+plt.title('Support vs Confidence')
+plt.show()
