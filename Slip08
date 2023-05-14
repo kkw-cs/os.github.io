@@ -1,198 +1,46 @@
-//Q1
-#include<stdio.h>
-#include<stdlib.h>
-#include<malloc.h>
+<html>
+<script type="text/javascript">
+alert('Exams are near,have you started preparing for?');
 
-#define MAX 100
-#define NEWNODE (DIRENT *)malloc(sizeof(DIRENT))
+let num1=prompt('Enter first number:');
+let num2=prompt('Enter second number:');
+let confirmMsg="Are you sure you want to add "+num1+" and "+num2;
 
-typedef struct direntry
-{
-	char fname[20];
-	int start,count;
-	struct direntry *next;
-}DIRENT;
+let confirmResult=confirm(confirmMsg);
 
-int main()
-{
-	DIRENT *dirst=NULL,*dirend=NULL,*temp,*temp1;
-	
-	int bitvector[MAX];
-	int i,j,n,ch;
-	char fnm[20];
-	
-	for(i=0;i<MAX;i++)
-	{
-		bitvector[i]=1;
-	}
-	
-	while(1)
-	{
-		printf("\n 1) Print Bit Vector");
-		printf("\n 2) Create File");
-		printf("\n 3) Print Files");
-		printf("\n 4) Delete File");
-		printf("\n 5) Exit");
-		
-		printf("\n Enter choice : ");
-		scanf("%d",&ch);
-				
-		switch(ch)
-		{
-			case 1:	for(i=0;i<MAX;i++)
-					{
-						printf("%5d",bitvector[i]);
-					}
-			
-					break;
-					
-			case 2:	if(dirst==NULL)
-      				{
-						dirst=dirend=NEWNODE;
-					}
-      				else
-      				{
-						temp = NEWNODE;
-						dirend->next=temp;
-						dirend=temp;
-      				}
-      				
-      				dirend->next=NULL;
-      
-	  				printf("\n Enter Filename : ");
-      				scanf("%s",dirend->fname);
-      
-	  				printf("\nEnter The Number of Blocks To Allocate : ");
-      				scanf("%d",&n);
-      				
-      				for(i=0;i<100;i++)
-      				{
-       					if(bitvector[i]==1) 
-       					{
-							for(j=i;j<i+n;j++) 
-							{
-	 							if(bitvector[j]==0)
-	  								break;
-							}
-
-							if(j==i+n) 
-							{
-	 							dirend->start=i;
-	 							dirend->count=n;
-	 							
-	 							for(j=i;j<i+n;j++)
-	 							{
-									bitvector[j]=0;
-								}
-								
-	 							break;
-							}
-       					}
-      				}
-      				
-      				break;
-
-			case 3:	printf("\n File Details");
-					printf("\n File Name \t Start \t Size");
-					for(temp=dirst;temp!=NULL;temp=temp->next)
-					{
-						printf("\n %s \t %d \t %d",temp->fname,temp->start,temp->count);
-					}
-					break;
-			
-			case 4:	printf("\n Enter File Name : ");
-					scanf("%s",fnm);
-					
-					temp1 = dirst;
-					
-					for(temp=dirst;temp!=NULL;temp=temp->next)
-					{
-						if(strcmp(temp->fname,fnm)==0)
-						{
-							break;	
-						}
-						
-						temp1 = temp;
-					}
-					
-					if(temp!=NULL)
-					{
-						for(i=temp->start;i<temp->start+temp->count;i++)
-						{
-							bitvector[i] = 1;
-						}
-						
-						if(temp==dirst)
-						{
-							dirst=dirst->next;
-						}
-						else
-						{
-							temp1->next = temp->next;	
-						}
-						
-						free(temp);
-					}
-					else
-					{
-						printf("\n File not found");
-					}
-					
-					break;
-			
-			case 5:	exit(0);
-			
-			default: printf("\n Invalid Choice");
-		}
-	}
-	
-	return 0;
+if(confirmResult==true){
+num1=parseInt(num1);
+num2=parseInt(num2);
+let sum=num1+num2;
+alert("The sum of "+num1+" and "+num2+" is "+sum);
 }
-//Q2
-// SSTF disk scheduling
-
-#include<stdio.h>
-#include<stdlib.h>
-
-int main()
-{
-    int RQ[100],i,n,TotalHeadMoment=0,initial,count=0,min=1000,d,index;
-
-    printf("\n Enter the number of Requests : ");
-    scanf("%d",&n);
-
-    printf("\n Enter the Requests sequence : ");
-    for(i=0;i<n;i++)
-    {
-	    scanf("%d",&RQ[i]);
-	}
-	
-	printf("\n Enter initial head position : ");
-    scanf("%d",&initial);
-    
-    while(count!=n)
-    {       
-        for(i=0;i<n;i++)
-        {
-            d=abs(RQ[i]-initial);
-            
-            if(min>d)
-            {
-               min=d;
-               index=i;
-            }          
-        }
-        
-        TotalHeadMoment=TotalHeadMoment+min;
-        initial=RQ[index];
-        RQ[index]=1000;
-        min=1000;
-        count++;
-    }
-    
-    printf("\n Total head movement is : %d",TotalHeadMoment);
-    
-	return 0;
-}
+</script>
+</html>
 
 
+
+
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori,association_rules
+#Loadthedataset
+df=pd.read_csv('market_basket.csv')
+#Dropanyrowswithnullvalues
+df.dropna(inplace=True)
+#Convertcategoricalvaluestonumericformat
+te=TransactionEncoder()
+te_ary=te.fit(df.values).transform(df.values)
+df=pd.DataFrame(te_ary,columns=te.columns_)
+#Generatefrequentitemsets
+frequent_itemsets=apriori(df,min_support=0.01,use_colnames=True)
+#Generateassociationrules
+rules=association_rules(frequent_itemsets,metric="lift",min_threshold=1)
+#Displayinformationaboutthedataset
+print("Dataset information:")
+print(df.info())
+#Displaythefrequentitemsets
+print("\n Frequent itemsets:")
+print(frequent_itemsets)
+#Displaytheassociationrules
+print("\n Association rules:")
+print(rules)
