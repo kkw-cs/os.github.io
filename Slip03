@@ -1,3 +1,5 @@
+//WT
+//Slip3.html
 <html>
 <body>
 <form method="POST" action="Slip3.php">
@@ -11,7 +13,7 @@ Enter Password:<input type="text" name="txt2" id="txt2">
 </body>
 </html>
 
-
+//Slip3.php
 <?php
 session_start();
 if(!isset($_SESSION['count']))
@@ -49,7 +51,7 @@ $password=$_POST['txt2'];
 
 
 
-
+//DA
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
