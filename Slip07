@@ -1,3 +1,5 @@
+//WT
+//Slip7.xml
 <?xml version="1.0"?>
 <MovieInfo>
 <Movie id="01">
@@ -54,9 +56,9 @@ foreach($t2 as $node){
 // foreach($movies as $movie){
 //     echo "MovieTitle:".$movie->getElementsByTagName('MovieTitle')[0]->textContent.",";
 //     echo "ActorName:".$movie->getElementsByTagName('ActorName')[0]->textContent."<br>";
-    // }
+// }
     
-    
+//DA    
 import io
 import pandas as pd
 df = pd.read_csv('D:/Clg/TYBCS Sem 6/DA/Market_Basket.csv')
