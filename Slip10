@@ -1,3 +1,4 @@
+//WT
 <html>
 <head>
 <title>Insert text before and after paragraph using jQuery</title>
@@ -22,7 +23,7 @@ $(document).ready(function(){
 </html>
 
 
-
+//DA
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori,association_rules
