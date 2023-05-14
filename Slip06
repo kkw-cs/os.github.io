@@ -1,3 +1,5 @@
+//WT
+//Slip6.xml
 <?xml version="1.0"?>
 <BookInfo>
 <Book id="01">
@@ -26,7 +28,7 @@
 </Book>
 </BookInfo>
 
-
+//Slip.php
 <?php
 $xml=simplexml_load_file("Slip6.xml")or die("Cannot find");
 echo "Book Details<br>";
@@ -44,7 +46,7 @@ echo "</table>";
 ?>
 
 
-
+//DA
 import pandas as pd
 from mlxtend.frequent_patterns import apriori, association_rules
 transactions = [['Bread','Milk'],
