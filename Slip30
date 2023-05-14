@@ -1,3 +1,4 @@
+//WT
 <?xml version="1.0" encoding="UTF-8"?>
 <Bookstore>
 <Yoga>
@@ -40,7 +41,7 @@
 
 
 
-
+//DA
 transactions=[['eggs','milk','bread'],['eggs','apple'],['milk','bread'],['apple','milk'],['milk','apple','bread']]
 
 item_to_num={'eggs':1,'milk':2,'bread':3,'apple':4}
