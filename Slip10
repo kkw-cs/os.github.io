@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Insert text before and after paragraph using jQuery</title>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+<script>
+$(document).ready(function(){
+    $("#btn1").click(function(){
+    $("p").before("Textinsertedbeforetheparagraph.");
+    });
+    $("#btn2").click(function(){
+    $("p").after("Textinsertedaftertheparagraph.");
+    });
+});
+    </script>
+    </head>
+    <body>
+        <h1>Insert text before and after paragraph using jQuery</h1>
+        <p>This is a paragraph.</p>
+    <button id="btn1">Before</button>
+    <button id="btn2">After</button>
+    </body>
+</html>
+
+
+
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori,association_rules
+#Createthedataset
+dataset={
+1:["eggs","milk","bread"],
+2:["eggs","apple"],
+3:["milk","bread"],
+4:["apple","milk"],
+5:["milk","apple","bread"]
+}
+#Convertcategoricalvaluesintonumericformat
+te=TransactionEncoder()
+te_ary=te.fit(dataset.values()).transform(dataset.values())
+df=pd.DataFrame(te_ary,columns=te.columns_)
+#ApplyApriorialgorithmtogeneratefrequentitemsetsandassociationrules
+min_sup=0.4
+frequent_itemsets=apriori(df,min_support=min_sup,use_colnames=True)
+association_rules=association_rules(frequent_itemsets,metric="confidence",min_threshold=0.6)
+#Printthefrequentitemsetsandassociationrules
+print("Frequent Itemsets:\n",frequent_itemsets)
+print("\nAssociation Rules:\n",association_rules)
